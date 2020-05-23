@@ -5,10 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"blog/controller"
 )
-type Login struct {
-	User   string `form:"user" json:"user"`
-	Passwd string `form:"passwd" json:"passwd"`
-}
+
 
 
 // 登录路由

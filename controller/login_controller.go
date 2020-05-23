@@ -9,6 +9,11 @@ type LoginControl struct {
 
 }
 
+type Login struct {
+	User   string `form:"user" json:"user"`
+	Passwd string `form:"passwd" json:"passwd"`
+}
+
 // 登录认证control
 func (w *LoginControl) Iogin(c *gin.Context) {
 	// ShouldBind()会根据请求的Content-Type自行选择绑定器
