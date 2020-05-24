@@ -25,17 +25,20 @@ func (w *LoginControl) Iogin(c *gin.Context) {
 		return
 	}
 
+
 	// 这里先写死账号和密码  后期要从数据库中获取
 	if (login.User != "code" || login.Passwd != "123456") {
 		c.JSON(http.StatusOK, gin.H{
-			// 登录失败返回code 2000
-			"code": 2000,
+			// 登录失败返回code 1001
+			"code": 1001,
+			"message":"failed",
 		})
 		return
 	}
 	c.JSON(http.StatusOK, gin.H{
 		// 登录失败返回code 1000
 		"code": 1000,
+		"message":"success",
 	})
 	return
 }

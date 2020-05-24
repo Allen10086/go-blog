@@ -1,10 +1,12 @@
 package main
 
 import (
-	"blog/router"
+	"blog/routers"
 )
 
 func main() {
-	// 登录路由
-	router.LoginRouter()
+	// 路由
+	r := routers.SetupRouter()
+	r.Run(":8081")
+
 }

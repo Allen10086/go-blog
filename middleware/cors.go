@@ -40,6 +40,7 @@ func Cors() gin.HandlerFunc {
 			c.JSON(http.StatusOK, "Options Request!")
 		}
 		// 处理请求
-		c.Next()        //  处理请求
+		c.Next()        //  调用后续的处理函数
+		//c.Abort()      // 阻止调用后续的处理函数
 	}
 }

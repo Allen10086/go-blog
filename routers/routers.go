@@ -1,4 +1,4 @@
-package router
+package routers
 
 import (
 	"blog/middleware"
@@ -7,11 +7,10 @@ import (
 )
 
 
-
 // 登录路由
-func LoginRouter()  {
+func SetupRouter() *gin.Engine {
 	router := gin.Default()
-	// 中间件解决跨域问题
+	// 将中间件注册到全局 对所有路由生效
 	router.Use(middleware.Cors())
 
 	LoginControl := &controller.LoginControl{}
@@ -20,7 +19,5 @@ func LoginRouter()  {
 	{
 		LoginAuth.POST("/login",LoginControl.Iogin)
 	}
-
-	router.Run(":8080")
-
+	return router
 }
