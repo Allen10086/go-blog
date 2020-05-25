@@ -6,7 +6,6 @@ import (
 )
 
 type LoginControl struct {
-
 }
 
 type Login struct {
@@ -25,6 +24,16 @@ func (w *LoginControl) Iogin(c *gin.Context) {
 		return
 	}
 
+	// 调用查询函数查询数据库中的用户名和密码
+	//u, err := models.GetUserInfo("admin", "admin")
+	//if err != nil {
+	//	c.JSON(http.StatusOK, gin.H{
+	//		// 登录失败返回code 1001
+	//		"code":    1001,
+	//		"message": "failed",
+	//	})
+	//	return
+	//}
 
 	// 这里先写死账号和密码  后期要从数据库中获取
 	if (login.User != "code" || login.Passwd != "123456") {
@@ -37,8 +46,8 @@ func (w *LoginControl) Iogin(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, gin.H{
 		// 登录失败返回code 1000
-		"code": 1000,
-		"message":"success",
+		"code":    1000,
+		"message": "success",
 	})
 	return
 }

@@ -12,10 +12,8 @@ type UserInfo struct {
 }
 
 // Todo 查询用户名和密码
-func GetUserInfo(username string, password string) (userinfo *UserInfo, err error) {
-	dao.DB.AutoMigrate(&UserInfo{})
-	// 4、查询
-	user := &UserInfo{}
+func GetUserInfo(username string, password string) (user *UserInfo, err error) {
+	user = &UserInfo{} // 赋值给user
 	err = dao.DB.Debug().Where(&UserInfo{UserName: username,PassWord: password}).First(user).Error
 	if err != nil {
 		return nil, err
