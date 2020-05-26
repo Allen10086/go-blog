@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"blog/models"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -9,8 +10,8 @@ type LoginControl struct {
 }
 
 type Login struct {
-	User   string `form:"user" json:"user"`
-	Passwd string `form:"passwd" json:"passwd"`
+	UserName string `form:"username" json:"username"`
+	Password string `form:"password" json:"password"`
 }
 
 // 登录认证control
@@ -25,25 +26,26 @@ func (w *LoginControl) Iogin(c *gin.Context) {
 	}
 
 	// 调用查询函数查询数据库中的用户名和密码
-	//u, err := models.GetUserInfo("admin", "admin")
-	//if err != nil {
+	_, err = models.GetUserInfo(login.UserName, login.Password)
+	if err != nil {
+		c.JSON(http.StatusOK, gin.H{
+			// 登录失败返回code 1001
+			"code":    1001,
+			"message": "failed",
+		})
+		return
+	}
+
+	// 没有数据库的用下面这个方法：这里先写死账号和密码  后期要从数据库中获取
+	//if (login.UserName != "code" || login.Password != "123456") {
 	//	c.JSON(http.StatusOK, gin.H{
 	//		// 登录失败返回code 1001
-	//		"code":    1001,
-	//		"message": "failed",
+	//		"code": 1001,
+	//		"message":"failed",
 	//	})
 	//	return
 	//}
 
-	// 这里先写死账号和密码  后期要从数据库中获取
-	if (login.User != "code" || login.Passwd != "123456") {
-		c.JSON(http.StatusOK, gin.H{
-			// 登录失败返回code 1001
-			"code": 1001,
-			"message":"failed",
-		})
-		return
-	}
 	c.JSON(http.StatusOK, gin.H{
 		// 登录失败返回code 1000
 		"code":    1000,
