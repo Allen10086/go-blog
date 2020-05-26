@@ -36,7 +36,7 @@ func (w *LoginControl) Iogin(c *gin.Context) {
 		return
 	}
 
-	// 没有数据库的用下面这个方法：这里先写死账号和密码  后期要从数据库中获取
+	// 没有数据库的用下面这个方法：这里先写死账号和密码  有数据库的要从数据库中获取
 	//if (login.UserName != "code" || login.Password != "123456") {
 	//	c.JSON(http.StatusOK, gin.H{
 	//		// 登录失败返回code 1001

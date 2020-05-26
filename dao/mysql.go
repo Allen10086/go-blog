@@ -15,7 +15,7 @@ func InitMySql() (err error) {
 	if err != nil {
 		return
 	}
-
+	
 	if err := db.DB().Ping(); err != nil {
 		panic(err)
 	}
