@@ -30,39 +30,37 @@ http://127.0.0.1:8081/api/user/login
 }
 ```
 
-
-
 ## 3、文章列表展示
 
 ```响应数据```
 
 ```json
 [{
-	article_id: "1",
-	article_class: "博客全站导航",
-	article_class_url: "https://www.cnblogs.com/songzhixue/",
-	article_detail_url: "https://www.cnblogs.com/songzhixue/p/10717975.html",
-	article_title: "GIT版本控制工具",
-	article_release_time: "2020-05-30 14-22-09",
-	article_author: "Lz12Code",
-	article_focus_url: "https://images.cnblogs.com/cnblogs_com/songzhixue/1487435/o_1.jpg",
-	article_content: "Git 是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。Git 与常用的版本控制工具 CVS, Subversion 等不同，它采用了分布式版本库的方式，不必服务器端软件支持。",
-	article_views: "9999",
-	article_comments: "8888",
-	article_tags: [{
-			tag_id: "1",
-			tag: "GO",
-			tag_class_url: "https://github.com/Lz12Code/go-blog"
+	"article_id": "1",
+	"article_class": "博客全站导航",
+	"article_class_url": "https://www.cnblogs.com/songzhixue/",
+	"article_detail_url": "https://www.cnblogs.com/songzhixue/p/10717975.html",
+	"article_title": "GIT版本控制工具",
+	"article_release_time": "2020-05-30 14-22-09",
+	"article_author": "Lz12Code",
+	"article_focus_url": "https://images.cnblogs.com/cnblogs_com/songzhixue/1487435/o_1.jpg",
+	"article_content": "Git 是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。Git 与常用的版本控制工具 CVS, Subversion 等不同，它采用了分布式版本库的方式，不必服务器端软件支持。",
+	"article_views": "9999",
+	"article_comments": "8888",
+	"article_tags": [{
+			"tag_id": "1",
+			"tag": "GO",
+			"tag_class_url": "https://github.com/Lz12Code/go-blog"
 		},
 		{
-			tag_id: "2",
-			tag: "Python",
-			tag_class_url: "https://www.cnblogs.com/songzhixue/"
+			"tag_id": "2",
+			"tag": "Python",
+			"tag_class_url": "https://www.cnblogs.com/songzhixue/"
 		},
 		{
-			tag_id: "3",
-			tag: "Linux",
-			tag_class_url: "https://www.cnblogs.com/songzhixue/p/11145760.html"
+			"tag_id": "3",
+			"tag": "Linux",
+			"tag_class_url": "https://www.cnblogs.com/songzhixue/p/11145760.html"
 		}
 	]
 }, ]
@@ -74,22 +72,22 @@ http://127.0.0.1:8081/api/user/login
 
 ```json
 [{
-		carousel_src: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590909501932&di=ae98381c43fa0128d6f219e56fe876dd&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01109a581b3802a84a0d304ff58e47.JPG%401280w_1l_2o_100sh.jpg",
-		carousel_id: "1",
-		carousel_caption: "时间就是金钱",
-		carousel_href: "https://mp.weixin.qq.com/s/CiUGkKNKYsQyVPtsRv6z4Q"
+		"carousel_src": "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590909501932&di=ae98381c43fa0128d6f219e56fe876dd&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01109a581b3802a84a0d304ff58e47.JPG%401280w_1l_2o_100sh.jpg",
+		"carousel_id": "1",
+		"carousel_caption": "时间就是金钱",
+		"carousel_href": "https://mp.weixin.qq.com/s/CiUGkKNKYsQyVPtsRv6z4Q"
 	},
 	{
-		carousel_src: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590910098343&di=c723e2978392fe213fe7d726b6284aa8&imgtype=0&src=http%3A%2F%2Fimg.yanj.cn%2Fstore%2Fgoods%2F2433%2F2433_bb3d59a4fe001e725d2f70c208434136.jpg_max.jpg",
-		carousel_id: "2",
-		carousel_caption: "风光壁纸-缤纷植物图",
-		carousel_href: "https://mp.weixin.qq.com/s/CiUGkKNKYsQyVPtsRv6z4Q"
+		"carousel_src": "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590910098343&di=c723e2978392fe213fe7d726b6284aa8&imgtype=0&src=http%3A%2F%2Fimg.yanj.cn%2Fstore%2Fgoods%2F2433%2F2433_bb3d59a4fe001e725d2f70c208434136.jpg_max.jpg",
+		"carousel_id": "2",
+		"carousel_caption": "风光壁纸-缤纷植物图",
+		"carousel_href": "https://mp.weixin.qq.com/s/CiUGkKNKYsQyVPtsRv6z4Q"
 	},
 	{
-		carousel_src: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590909633533&di=06ba82c19878a8801224193f37c7eb21&imgtype=0&src=http%3A%2F%2Fpic18.nipic.com%2F20120102%2F6127299_105223279000_2.jpg",
-		carousel_id: "3",
-		carousel_caption: "做个有良知的人",
-		carousel_href: "https://mp.weixin.qq.com/s/CiUGkKNKYsQyVPtsRv6z4Q"
+		"carousel_src": "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590909633533&di=06ba82c19878a8801224193f37c7eb21&imgtype=0&src=http%3A%2F%2Fpic18.nipic.com%2F20120102%2F6127299_105223279000_2.jpg",
+		"carousel_id": "3",
+		"carousel_caption": "做个有良知的人",
+		"carousel_href": "https://mp.weixin.qq.com/s/CiUGkKNKYsQyVPtsRv6z4Q"
 	}
 ]
 ```
