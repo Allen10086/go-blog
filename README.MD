@@ -71,24 +71,27 @@ http://127.0.0.1:8081/api/user/login
 ```响应数据```
 
 ```json
-[{
-		"carousel_src": "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590909501932&di=ae98381c43fa0128d6f219e56fe876dd&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01109a581b3802a84a0d304ff58e47.JPG%401280w_1l_2o_100sh.jpg",
-		"carousel_id": "1",
-		"carousel_caption": "时间就是金钱",
-		"carousel_href": "https://mp.weixin.qq.com/s/CiUGkKNKYsQyVPtsRv6z4Q"
-	},
-	{
-		"carousel_src": "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590910098343&di=c723e2978392fe213fe7d726b6284aa8&imgtype=0&src=http%3A%2F%2Fimg.yanj.cn%2Fstore%2Fgoods%2F2433%2F2433_bb3d59a4fe001e725d2f70c208434136.jpg_max.jpg",
-		"carousel_id": "2",
-		"carousel_caption": "风光壁纸-缤纷植物图",
-		"carousel_href": "https://mp.weixin.qq.com/s/CiUGkKNKYsQyVPtsRv6z4Q"
-	},
-	{
-		"carousel_src": "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590909633533&di=06ba82c19878a8801224193f37c7eb21&imgtype=0&src=http%3A%2F%2Fpic18.nipic.com%2F20120102%2F6127299_105223279000_2.jpg",
-		"carousel_id": "3",
-		"carousel_caption": "做个有良知的人",
-		"carousel_href": "https://mp.weixin.qq.com/s/CiUGkKNKYsQyVPtsRv6z4Q"
-	}
+[  {
+    carousel_src:
+      "http://www.yyyweb.com/demo/slice-box/images/2.jpg",
+    carousel_id: "1",
+    carousel_caption: "时间就是金钱",
+    carousel_href: "https://mp.weixin.qq.com/s/CiUGkKNKYsQyVPtsRv6z4Q"
+  },
+  {
+    carousel_src:
+      "http://www.yyyweb.com/demo/slice-box/images/4.jpg",
+    carousel_id: "2",
+    carousel_caption: "风光壁纸-缤纷植物图",
+    carousel_href: "https://mp.weixin.qq.com/s/CiUGkKNKYsQyVPtsRv6z4Q"
+  },
+  {
+    carousel_src:
+      "http://www.yyyweb.com/demo/slice-box/images/7.jpg",
+    carousel_id: "3",
+    carousel_caption: "做个有良知的人",
+    carousel_href: "https://mp.weixin.qq.com/s/CiUGkKNKYsQyVPtsRv6z4Q"
+  }
 ]
 ```
 
