@@ -72,25 +72,25 @@ http://127.0.0.1:8081/api/user/login
 
 ```json
 [  {
-    carousel_src:
+    "carousel_src":
       "http://www.yyyweb.com/demo/slice-box/images/2.jpg",
-    carousel_id: "1",
-    carousel_caption: "时间就是金钱",
-    carousel_href: "https://mp.weixin.qq.com/s/CiUGkKNKYsQyVPtsRv6z4Q"
+    "carousel_id": "1",
+    "carousel_caption": "时间就是金钱",
+    "carousel_href": "https://mp.weixin.qq.com/s/CiUGkKNKYsQyVPtsRv6z4Q"
   },
   {
-    carousel_src:
+    "carousel_src":
       "http://www.yyyweb.com/demo/slice-box/images/4.jpg",
-    carousel_id: "2",
-    carousel_caption: "风光壁纸-缤纷植物图",
-    carousel_href: "https://mp.weixin.qq.com/s/CiUGkKNKYsQyVPtsRv6z4Q"
+    "carousel_id": "2",
+    "carousel_caption": "风光壁纸-缤纷植物图",
+    "carousel_href": "https://mp.weixin.qq.com/s/CiUGkKNKYsQyVPtsRv6z4Q"
   },
   {
-    carousel_src:
+    "carousel_src":
       "http://www.yyyweb.com/demo/slice-box/images/7.jpg",
-    carousel_id: "3",
-    carousel_caption: "做个有良知的人",
-    carousel_href: "https://mp.weixin.qq.com/s/CiUGkKNKYsQyVPtsRv6z4Q"
+    "carousel_id": "3",
+    "carousel_caption": "做个有良知的人",
+    "carousel_href": "https://mp.weixin.qq.com/s/CiUGkKNKYsQyVPtsRv6z4Q"
   }
 ]
 ```
