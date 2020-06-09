@@ -1,7 +1,7 @@
 package controller
 
 import (
-	"blog/models"
+	"blog/dao/user"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -26,7 +26,7 @@ func (w *LoginControl) Iogin(c *gin.Context) {
 	}
 
 	// 调用查询函数查询数据库中的用户名和密码
-	_, err = models.GetUserInfo(login.UserName, login.Password)
+	_, err = user.GetUserInfo(login.UserName, login.Password)
 	if err != nil {
 		c.JSON(http.StatusOK, gin.H{
 			// 登录失败返回code 1001
