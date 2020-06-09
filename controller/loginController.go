@@ -15,7 +15,7 @@ type Login struct {
 }
 
 // 登录认证control
-func (w *LoginControl) Iogin(c *gin.Context) {
+func (w *LoginControl) Login(c *gin.Context) {
 	// ShouldBind()会根据请求的Content-Type自行选择绑定器
 	var login Login
 	// 如果有值没有错误返回json

@@ -17,7 +17,7 @@ func SetupRouter() *gin.Engine {
 	// 登录认证路由组
 	LoginAuth := router.Group("/api/user")
 	{
-		LoginAuth.POST("/login",LoginControl.Iogin)
+		LoginAuth.POST("/login",LoginControl.Login)
 	}
 	return router
 }
