@@ -97,6 +97,19 @@ http://127.0.0.1:8081/api/user/login
 
 ### 5、文章分类
 
+#### 1）分类表
+
+```mysq
+CREATE TABLE `article_categories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `category_name` char(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `create_time` timestamp NULL DEFAULT NULL,
+  `update_time` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique` (`category_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```
+
 ```查询[GET]:localhost:8081/api/v1/category/all```
 
 ```json
