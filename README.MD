@@ -95,5 +95,52 @@ http://127.0.0.1:8081/api/user/login
 ]
 ```
 
+### 5、文章分类
 
+```查询[GET]:localhost:8081/api/v1/category/all```
+
+```json
+{
+    "CategoryList": [
+        {
+            "id": 1,
+            "category_name": "Go",
+            "create_time": "2020-06-12T16:02:37+08:00",
+            "update_time": "2020-06-12T16:02:37+08:00"
+        },
+        {
+            "id": 2,
+            "category_name": "C#",
+            "create_time": "2020-06-12T15:51:59+08:00",
+            "update_time": "2020-06-12T15:51:59+08:00"
+        },
+        {
+            "id": 3,
+            "category_name": "C++",
+            "create_time": "2020-06-12T11:09:33+08:00",
+            "update_time": "2020-06-12T11:09:33+08:00"
+        },
+    "code": 1000,
+    "message": "success"
+}
+```
+
+```添加[POST]:localhost:8081/api/v1/category/create```
+
+```JSON
+category_name:Go
+```
+
+```更新[PUT]:localhost:8081/api/v1/category/modify?id=1&category_name=Go```
+
+```
+id:1
+category_name:Go
+```
+
+```删除[DELETE]:localhost:8081/api/v1/category/delete?id=4```
+
+```
+id:1
+```
 

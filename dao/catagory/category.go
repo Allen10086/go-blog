@@ -6,8 +6,8 @@ import (
 )
 
 // 创建分类
-func AddCategory(category *models.ArticleCategory) (err error) {
-	err = database.DB.Create(&category).Error
+func CreateCategory(category *models.ArticleCategory) (err error) {
+	err = database.DB.Debug().Create(&category).Error
 	if err != nil {
 		return
 	}
@@ -24,19 +24,21 @@ func GetAllCategory() (all []models.ArticleCategory, err error) {
 	return
 }
 
-// 修改
-
-// 删除单个分类
-func DeleteCategory(categoryId int64) (err error) {
-
-	err = database.DB.Debug().Where("id = ?", categoryId).Delete(&models.ArticleCategory{}).Error
+// 修改分类
+func ModifyCategory(category *models.ArticleCategory) (err error) {
+	err = database.DB.Debug().Model(&models.ArticleCategory{}).Where("id = ?", category.Id).Update(category).Error
 	if err != nil {
 		return
 	}
 	return
 }
 
-// 删除所有分类
-func DeleteAllCategory() {
+// 删除单个分类
+func DeleteCategory(categoryId int) (err error) {
 
+	err = database.DB.Debug().Where("id = ?", categoryId).Delete(&models.ArticleCategory{}).Error
+	if err != nil {
+		return
+	}
+	return
 }
