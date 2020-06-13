@@ -45,8 +45,8 @@ func (w *CategoryController) CreateCategory(c *gin.Context) {
 	category_name := c.PostForm("category_name")
 	category := &models.ArticleCategory{
 		CategoryName: category_name,
-		CreateTime:   time.Now(),
-		UpdateTime:   time.Now(),
+		CreateTime:   time.Now().UnixNano()/1e6,
+		UpdateTime:   time.Now().UnixNano()/1e6,
 	}
 	err := catagory.CreateCategory(category)
 	if err != nil {
@@ -82,7 +82,7 @@ func (w *CategoryController) ModifyCategory(c *gin.Context) {
 	category := &models.ArticleCategory{
 		Id:           Id,
 		CategoryName: categoryName,
-		UpdateTime:   time.Now(),
+		UpdateTime:   time.Now().Unix()/1e6,
 	}
 
 	e := catagory.ModifyCategory(category)

@@ -10,7 +10,7 @@ var (
 )
 // 初始化连接
 func InitMySql() (err error) {
-	dsn := "root:root@tcp(127.0.0.1:3306)/spiders?charset=utf8mb4&parseTime=True&loc=Local"
+	dsn := "root:root@tcp(127.0.0.1:3306)/user?charset=utf8mb4&parseTime=True&loc=Local"
 	db, err := gorm.Open("mysql", dsn)
 	if err != nil {
 		return

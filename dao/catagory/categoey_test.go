@@ -18,9 +18,9 @@ func init() {
 // 调用创建分类接口
 func TestCreateCategory(t *testing.T) {
 	category := &models.ArticleCategory{
-		CategoryName: "C#",
-		CreateTime:   time.Now(),
-		UpdateTime:   time.Now(),
+		CategoryName: "tytyt",
+		CreateTime:   time.Now().UnixNano()/1e6,
+		UpdateTime:   time.Now().UnixNano()/1e6,
 	}
 
 	err := CreateCategory(category)
@@ -47,7 +47,7 @@ func TestModifyCategory(t *testing.T) {
 	category := &models.ArticleCategory{
 		Id:           4333,
 		CategoryName: "Django",
-		UpdateTime:   time.Now(),
+		UpdateTime:   time.Now().UnixNano()/1e6,
 	}
 	err := ModifyCategory(category)
 	if err != nil {
