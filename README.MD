@@ -102,12 +102,12 @@ http://127.0.0.1:8081/api/user/login
 ```mysq
 CREATE TABLE `article_categories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `category_name` char(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `create_time` timestamp NULL DEFAULT NULL,
-  `update_time` timestamp NULL DEFAULT NULL,
+  `category_name` char(20) CHARACTER SET utf8,
+  `create_time` bigint(20) DEFAULT NULL,
+  `update_time` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique` (`category_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4;
 ```
 
 ```查询[GET]:localhost:8081/api/v1/category/all```

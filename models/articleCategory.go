@@ -1,5 +1,7 @@
 package models
 
+
+// 定义模型类
 type ArticleCategory struct {
 	Id           int    `json:"id" gorm:"not null unique pk INT(11) 'id'"`
 	CategoryName string `json:"category_name" gorm:"default 'NULL' CHAR(20) 'category_name'"`
