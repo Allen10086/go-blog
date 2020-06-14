@@ -42,9 +42,9 @@ func (w *CategoryController) GetCategory(c *gin.Context) {
 
 // 添加方法
 func (w *CategoryController) CreateCategory(c *gin.Context) {
-	category_name := c.PostForm("category_name")
+	categoryName := c.PostForm("category_name")
 	category := &models.ArticleCategory{
-		CategoryName: category_name,
+		CategoryName: categoryName,
 		CreateTime:   time.Now().UnixNano()/1e6,
 		UpdateTime:   time.Now().UnixNano()/1e6,
 	}
@@ -69,9 +69,8 @@ func (w *CategoryController) CreateCategory(c *gin.Context) {
 
 // 修改方法
 func (w *CategoryController) ModifyCategory(c *gin.Context) {
-	categoryId := c.Query("id")
-	categoryName := c.Query("category_name")
-
+	categoryName := c.PostForm("category_name")
+	categoryId := c.PostForm("id")
 	// 字符串转换成int
 	Id, err := strconv.Atoi(categoryId)
 	if err != nil {
@@ -82,7 +81,7 @@ func (w *CategoryController) ModifyCategory(c *gin.Context) {
 	category := &models.ArticleCategory{
 		Id:           Id,
 		CategoryName: categoryName,
-		UpdateTime:   time.Now().Unix()/1e6,
+		UpdateTime:   time.Now().UnixNano()/1e6,
 	}
 
 	e := catagory.ModifyCategory(category)

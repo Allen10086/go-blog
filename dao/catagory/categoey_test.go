@@ -45,7 +45,7 @@ func TestGetAllCategory(t *testing.T) {
 // 修改
 func TestModifyCategory(t *testing.T) {
 	category := &models.ArticleCategory{
-		Id:           4333,
+		Id:           4,
 		CategoryName: "Django",
 		UpdateTime:   time.Now().UnixNano()/1e6,
 	}
