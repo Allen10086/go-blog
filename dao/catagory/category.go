@@ -42,3 +42,18 @@ func DeleteCategory(categoryId int) (err error) {
 	}
 	return
 }
+
+//func QueryCategoryName(categoryID []int) (map[int]string, error) {
+//	category := make([]models.ArticleCategory, 0)
+//	categoryMap := make(map[int]string)
+//
+//	if err := database.DB.Debug().Where("id in ?", categoryID).Find(category).Error; err != nil {
+//		return categoryMap, err
+//	}
+//
+//	for _, v := range category {
+//		categoryMap[v.Id] = v.CategoryName
+//	}
+//
+//	return categoryMap, nil
+//}
