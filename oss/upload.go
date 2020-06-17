@@ -10,8 +10,8 @@ import (
 
 const (
 	Endpoint        = "http://oss-cn-beijing.aliyuncs.com"
-	AccessKeyId     = "LTAI4FzqQZARLTdg7yx7Hbtc"
-	AccessKeySecret = "SivI4wEna2oAmStSHerQqesc4uKiMa"
+	AccessKeyId     = "xxxxx"
+	AccessKeySecret = "xxxxx"
 	BuckeyName      = "lz12code"
 	ObjectName      = "myblog/"
 	ImgPath         = "https://lz12code.oss-cn-beijing.aliyuncs.com/"
