@@ -19,10 +19,10 @@ func init() {
 func TestCreateAticle(t *testing.T) {
 
 	article := &models.ArticleList{
-		Title:        "Lz12Code",
+		Title:        "Python",
 		CreateTime:   time.Now().UnixNano()/1e6,
 		UpdateTime:   time.Now().UnixNano()/1e6,
-		Status:       0,
+		Status:       true,
 		Md:           "md",
 		Html:         "html",
 		CoverAddress: "https://lz12code.oss-cn-beijing.aliyuncs.com/myblog/153f73d9-1635-4e64-98c3-025cb3d04b43.jpg",
@@ -31,7 +31,6 @@ func TestCreateAticle(t *testing.T) {
 		CategoryId:   39,
 		Summary:      "Lz12Code",
 		Views:        888,
-		CoverPreview: "https://lz12code.oss-cn-beijing.aliyuncs.com/myblog/153f73d9-1635-4e64-98c3-025cb3d04b43.jpg",
 	}
 	err := CreateAticle(article)
 	if err != nil{

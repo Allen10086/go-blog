@@ -17,7 +17,7 @@ func (a *ArticleController) CreateArticle(c *gin.Context) {
 		Title:        "博客开发",
 		CreateTime:   time.Now().UnixNano() / 1e6,
 		UpdateTime:   time.Now().UnixNano() / 1e6,
-		Status:       0,
+		Status:       true,
 		Md:           "md",
 		Html:         "html",
 		CoverAddress: "https://lz12code.oss-cn-beijing.aliyuncs.com/myblog/153f73d9-1635-4e64-98c3-025cb3d04b43.jpg",
@@ -26,7 +26,6 @@ func (a *ArticleController) CreateArticle(c *gin.Context) {
 		CategoryId:   39,
 		Summary:      "阿斯顿撒",
 		Views:        888,
-		CoverPreview: "https://lz12code.oss-cn-beijing.aliyuncs.com/myblog/153f73d9-1635-4e64-98c3-025cb3d04b43.jpg",
 	}
 	err := articles.CreateAticle(article)
 	if err != nil {
