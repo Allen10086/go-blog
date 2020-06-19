@@ -32,7 +32,7 @@ func (w *CategoryController) GetCategory(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"code":         1000,
 		"message":      "success",
-		"CategoryList": all,
+		"categoryList": all,
 	})
 	return
 
