@@ -29,7 +29,7 @@ func UploadImg(reader io.Reader, suffix string) (imgUrl string) {
 	dirName := fmt.Sprintf("%s%s.%s", ObjectName, uid, suffix)
 
 	imgUrl = fmt.Sprintf("%s%s", ImgPath, dirName)
-	fmt.Println(imgUrl)
+	//fmt.Println(imgUrl)
 
 	// Endpoint以杭州为例，其它Region请按实际情况填写。
 	endpoint := Endpoint

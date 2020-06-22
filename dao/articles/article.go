@@ -2,10 +2,10 @@ package articles
 
 import (
 	"blog/dao/catagory"
+	"blog/dao/tags"
 	"blog/database"
 	"blog/models"
 	"encoding/json"
-	"fmt"
 	"log"
 )
 
@@ -18,16 +18,24 @@ func CreateAticle(article *models.ArticleList) (err error) {
 	return
 }
 
+// 文章管理列表
 type ArticleList struct {
-	ID           int    `json:"id"`
-	Title        string `json:"title"`
-	CategoryName string `json:"category_name"`
-	CoverAddress string `json:"cover_address"`
-	CreateTime   int64  `json:"create_time"`
-	UpdateTime   int64  `json:"update_time"`
-	Views        int    `json:"views"`
-	Status       bool   `json:"status"`
+	ID           int      `json:"id"`
+	Title        string   `json:"title"`
+	CategoryName string   `json:"category_name"`
+	CoverAddress string   `json:"cover_address"`
+	CreateTime   int64    `json:"create_time"`
+	UpdateTime   int64    `json:"update_time"`
+	Views        int      `json:"views"`
+	Status       bool     `json:"status"`
+	TagName      []string `json:"tag_name"`
+
+
 }
+
+
+
+
 
 // 文章列表
 func GetArticle() (articleList []ArticleList, err error) {
@@ -37,21 +45,36 @@ func GetArticle() (articleList []ArticleList, err error) {
 	if err != nil {
 		return
 	}
-	log.Printf("articles:%+v", articles)
+	//log.Printf("articles:%+v", articles)
 
 	categoryList := make([]int, 0)
+
+	//  tagsMap:map[int][]int{4:[]int{2, 3}, 5:[]int{5, 6}}  文章id对应的标签id
+	tagsMap := make(map[int][]int)
+
 	for _, v := range articles {
 		tagId := make([]int, 0)
-		json.Unmarshal([]byte(v.TagId), &tagId)
-		fmt.Printf("tagid:%+v", tagId)
+		err = json.Unmarshal([]byte(v.TagId), &tagId)
+		if err != nil {
+			return
+		}
+		//fmt.Printf("tagid:%#v", tagId)
+		tagsMap[v.Id] = tagId
+		// 将所有文章的分类id添加到切片内
 		categoryList = append(categoryList, v.CategoryId)
 	}
-
+	//log.Printf("tagsMap:%#v",tagsMap)
+	// 分类查询
 	categoryMap, err := catagory.QueryCategoryName(categoryList)
 	if err != nil {
 		return articleList, err
 	}
-	fmt.Printf("categoryMap:%+v", categoryMap)
+	//fmt.Printf("categoryMap:%+v", categoryMap)
+	// 标签查询
+	tagNameMap, err := tags.QueryTagName(tagsMap)
+	if err != nil {
+		return
+	}
 
 	list := make([]ArticleList, len(articles))
 	if len(articles) > 0 {
@@ -64,6 +87,7 @@ func GetArticle() (articleList []ArticleList, err error) {
 			list[i].UpdateTime = articles[i].UpdateTime
 			list[i].Views = articles[i].Views
 			list[i].Status = articles[i].Status
+			list[i].TagName = tagNameMap[articles[i].Id]
 		}
 	}
 

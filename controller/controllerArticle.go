@@ -3,6 +3,7 @@ package controller
 import (
 	"blog/dao/articles"
 	"blog/models"
+	"encoding/json"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"time"
@@ -13,6 +14,9 @@ type ArticleController struct {
 
 // 创建文章
 func (a *ArticleController) CreateArticle(c *gin.Context) {
+	tagsId := make([]int, 0)
+	tagsId = append(tagsId, 2, 3)
+	tags, err := json.Marshal(&tagsId)
 	article := &models.ArticleList{
 		Title:        "博客开发",
 		CreateTime:   time.Now().UnixNano() / 1e6,
@@ -26,8 +30,9 @@ func (a *ArticleController) CreateArticle(c *gin.Context) {
 		CategoryId:   39,
 		Summary:      "阿斯顿撒",
 		Views:        888,
+		TagId:        string(tags),
 	}
-	err := articles.CreateAticle(article)
+	err = articles.CreateAticle(article)
 	if err != nil {
 		c.JSON(http.StatusOK, gin.H{
 			"code":    1001,

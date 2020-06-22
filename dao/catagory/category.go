@@ -43,9 +43,7 @@ func DeleteCategory(categoryId int) (err error) {
 	return
 }
 
-
-
-// 查询每篇文章的分类
+// 查询所有文章的对应的所有分类  连表查询
 func QueryCategoryName(categorySlice []int) (map[int]string, error) {
 	category := make([]models.ArticleCategory, 0)
 	categoryMap := make(map[int]string)
@@ -60,3 +58,5 @@ func QueryCategoryName(categorySlice []int) (map[int]string, error) {
 
 	return categoryMap, nil
 }
+
+

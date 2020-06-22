@@ -20,10 +20,10 @@ func init() {
 // 发布文章
 func TestCreateAticle(t *testing.T) {
 	tagsId := make([]int, 0)
-	tagsId = append(tagsId, 2, 3)
+	tagsId = append(tagsId, 3, 4)
 	tags, err := json.Marshal(&tagsId)
 	article := &models.ArticleList{
-		Title:        "vue",
+		Title:        "数据库",
 		CreateTime:   time.Now().UnixNano() / 1e6,
 		UpdateTime:   time.Now().UnixNano() / 1e6,
 		Status:       true,

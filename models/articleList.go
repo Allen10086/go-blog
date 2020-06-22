@@ -15,10 +15,5 @@ type ArticleList struct {
 	CategoryId   int    `json:"category_id" gorm:"not null comment('分类id') INT(3) 'category_id'"`
 	Summary      string `json:"summary" gorm:"comment('文章摘要') TEXT 'summary'"`
 	Views        int    `json:"views" gorm:"default NULL comment('文章浏览量') INT(10) 'views'"`
-	TagId        string  `json:"tag_id" gorm:"not null comment('标签id') INT(3) 'tag_id'"`
-	//Category     ArticleCategory `json:"category";gorm:"foreignkey:CategoryID"` //指定关联外键
-	//Tag          []ArticleTag    `json:"tag" gorm:"many2many:article_tag"`      //多对多关系.
-	//CoverPreview string `json:"cover_preview" gorm:"default 'NULL' comment('封面预览地址') VARCHAR(255) 'cover_preview'"`
-	//ArticleCategory
-	//Status       bool   `json:"status"`
+	TagId        string `json:"tag_id" gorm:"not null comment('标签id') INT(3) 'tag_id'"`
 }

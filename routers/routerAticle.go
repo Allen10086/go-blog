@@ -11,6 +11,7 @@ func LoadArticle(e *gin.Engine)  {
 	{
 		// 创建文章
 		Article.POST("create",ArticleController.CreateArticle)
+		// 查询文章
 		Article.GET("all",ArticleController.GetArticle)
 	}
 }
