@@ -5,9 +5,19 @@ import (
 	"blog/models"
 )
 
-// 添加分类
-func CreateTag(article *models.ArticleTag) (err error) {
-	err = database.DB.Debug().Create(&article).Error
+// 添加标签
+func CreateTag(tag *models.Tag) (err error) {
+	//err = database.DB.Debug().First(&article).Error
+	err = database.DB.Debug().Create(&tag).Error
+	if err != nil {
+		return
+	}
+	return
+}
+// 查询所有标签
+func QueryAllTagList() (tags []models.Tag, err error) {
+	// 根据update_time排序 倒序
+	err = database.DB.Debug().Order("update_time desc").Find(&tags).Error
 	if err != nil {
 		return
 	}
@@ -18,20 +28,23 @@ type Tags struct {
 	TagName string
 }
 
-// 查询所有文章对应的所有标签    联表查询   GORM查询出来的值只能用结构体接
-func QueryTagName(tagMap map[int][]int) (map[int][]string, error) {
-	tag := make([]Tags, 0)
-	tags := make(map[int][]string)
-	// 查询所有文章的所有分类 添加到tag切片内
-	for i, v := range tagMap {
-		t := make([]string, 0)
-		if err := database.DB.Debug().Select("tag_name").Table("article_tags").Where("id in (?)", v).Find(&tag).Error; err != nil {
-			return tags, err
+// 文章id 对应的标签
+func QueryTags(articleIds []int) (map[int][]string, error)  {
+	tagMap := make(map[int][]string)
+	for _, id := range articleIds {
+		t := make([]Tags, 0)
+		name := make([]string, 0)
+		if err := database.DB.Debug().Select("tags.tag_name").Table("article_tags").Joins("left join tags on article_tags.tag_id = tags.id").
+			Where("article_tags.article_id = ?", id).Find(&t).Error; err != nil {
+			return tagMap, err
 		}
-		for _, v := range tag {
-			t = append(t, v.TagName)
+
+		for _, v := range t {
+			name = append(name, v.TagName)
 		}
-		tags[i] = t
+
+		tagMap[id] = name
 	}
-	return tags, nil
+
+	return tagMap, nil
 }

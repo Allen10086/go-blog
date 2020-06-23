@@ -17,7 +17,7 @@ func init() {
 
 // 调用创建分类接口
 func TestCreateCategory(t *testing.T) {
-	category := &models.ArticleCategory{
+	category := &models.Category{
 		CategoryName: "tytyt",
 		CreateTime:   time.Now().UnixNano()/1e6,
 		UpdateTime:   time.Now().UnixNano()/1e6,
@@ -44,7 +44,7 @@ func TestGetAllCategory(t *testing.T) {
 
 // 修改
 func TestModifyCategory(t *testing.T) {
-	category := &models.ArticleCategory{
+	category := &models.Category{
 		Id:           4,
 		CategoryName: "Django",
 		UpdateTime:   time.Now().UnixNano()/1e6,

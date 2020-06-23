@@ -43,7 +43,7 @@ func (w *CategoryController) GetCategory(c *gin.Context) {
 // 添加方法
 func (w *CategoryController) CreateCategory(c *gin.Context) {
 	categoryName := c.PostForm("category_name")
-	category := &models.ArticleCategory{
+	category := &models.Category{
 		CategoryName: categoryName,
 		CreateTime:   time.Now().UnixNano()/1e6,
 		UpdateTime:   time.Now().UnixNano()/1e6,
@@ -78,7 +78,7 @@ func (w *CategoryController) ModifyCategory(c *gin.Context) {
 		return
 	}
 
-	category := &models.ArticleCategory{
+	category := &models.Category{
 		Id:           Id,
 		CategoryName: categoryName,
 		UpdateTime:   time.Now().UnixNano()/1e6,

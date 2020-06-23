@@ -1,16 +1,16 @@
 package articles
 
 import (
+	"blog/dao/articleTag"
 	"blog/dao/catagory"
 	"blog/dao/tags"
 	"blog/database"
 	"blog/models"
-	"encoding/json"
-	"log"
+	"fmt"
 )
 
 // 发布文章
-func CreateAticle(article *models.ArticleList) (err error) {
+func CreateAticle(article *models.Article) (err error) {
 	err = database.DB.Debug().Create(&article).Error
 	if err != nil {
 		return
@@ -29,52 +29,50 @@ type ArticleList struct {
 	Views        int      `json:"views"`
 	Status       bool     `json:"status"`
 	TagName      []string `json:"tag_name"`
-
-
+	//models.Tag
+	//models.Article
 }
 
-
-
-
-
-// 文章列表
+// 文章管理列表
 func GetArticle() (articleList []ArticleList, err error) {
-	articles := make([]models.ArticleList, 0)
+	articles := make([]models.Article, 0)
 	// 根据update_time排序 倒序
 	err = database.DB.Debug().Order("update_time desc").Find(&articles).Error
 	if err != nil {
 		return
 	}
-	//log.Printf("articles:%+v", articles)
 
+	// 分类id列表
 	categoryList := make([]int, 0)
-
-	//  tagsMap:map[int][]int{4:[]int{2, 3}, 5:[]int{5, 6}}  文章id对应的标签id
-	tagsMap := make(map[int][]int)
+	// 文章id列表
+	articleIdList := make([]int, 0)
 
 	for _, v := range articles {
-		tagId := make([]int, 0)
-		err = json.Unmarshal([]byte(v.TagId), &tagId)
-		if err != nil {
-			return
-		}
-		//fmt.Printf("tagid:%#v", tagId)
-		tagsMap[v.Id] = tagId
-		// 将所有文章的分类id添加到切片内
 		categoryList = append(categoryList, v.CategoryId)
+		articleIdList = append(articleIdList, v.Id)
 	}
-	//log.Printf("tagsMap:%#v",tagsMap)
+
 	// 分类查询
 	categoryMap, err := catagory.QueryCategoryName(categoryList)
 	if err != nil {
 		return articleList, err
 	}
-	//fmt.Printf("categoryMap:%+v", categoryMap)
-	// 标签查询
-	tagNameMap, err := tags.QueryTagName(tagsMap)
+
+	// 文章标签对应关系查询
+	articleTagList, err := articleTag.QueryArticleTag()
 	if err != nil {
 		return
 	}
+	fmt.Println(articleTagList)
+
+	// 标签查询
+	tagMap, err := tags.QueryTags(articleIdList)
+	if err != nil {
+		return
+	}
+	fmt.Printf("tagMap:%+v\n", tagMap)
+
+	// 组装文章id -> 标签名称 数据结构
 
 	list := make([]ArticleList, len(articles))
 	if len(articles) > 0 {
@@ -87,11 +85,11 @@ func GetArticle() (articleList []ArticleList, err error) {
 			list[i].UpdateTime = articles[i].UpdateTime
 			list[i].Views = articles[i].Views
 			list[i].Status = articles[i].Status
-			list[i].TagName = tagNameMap[articles[i].Id]
+			list[i].TagName = tagMap[articles[i].Id]
 		}
 	}
 
-	log.Printf("List:%+v", list)
+	//log.Printf("List:%+v", list)
 
 	articleList = list
 	return
