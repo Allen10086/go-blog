@@ -33,7 +33,7 @@ func TestCreateAticle(t *testing.T) {
 		CoverAddress: "https://lz12code.oss-cn-beijing.aliyuncs.com/myblog/153f73d9-1635-4e64-98c3-025cb3d04b43.jpg",
 		Author:       "Lz12Code",
 		Top:          0,
-		CategoryId:   7,
+		CategoryId:   6,
 		Summary:      "Lz12Code",
 		Views:        888,
 	}
