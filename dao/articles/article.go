@@ -94,3 +94,13 @@ func GetArticle() (articleList []ArticleList, err error) {
 	articleList = list
 	return
 }
+
+
+// 删除文章
+func DeleteArticle(articleId int) (err error) {
+	err = database.DB.Debug().Where("id = ?", articleId).Delete(&models.Article{}).Error
+	if err != nil {
+		return
+	}
+	return
+}

@@ -48,3 +48,17 @@ func TestQueryTags(t *testing.T) {
 	}
 	t.Logf("tagMap:%+v", tagMap)
 }
+
+func TestQueryAllTagList(t *testing.T) {
+	tags := &models.Tag{
+		TagName:    "mysql1",
+		CreateTime: time.Now().UnixNano() / 1e6,
+		UpdateTime: time.Now().UnixNano() / 1e6,
+	}
+	tagss, err := QueryAllTagList(tags.TagName)
+	if err!=nil{
+		fmt.Println("error:", err)
+		return
+	}
+	fmt.Printf("tagss:%+v",tagss.Id)
+}

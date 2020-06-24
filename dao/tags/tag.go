@@ -7,20 +7,25 @@ import (
 
 // 添加标签
 func CreateTag(tag *models.Tag) (err error) {
-	//err = database.DB.Debug().First(&article).Error
 	err = database.DB.Debug().Create(&tag).Error
 	if err != nil {
 		return
 	}
 	return
 }
-// 查询所有标签
-func QueryAllTagList() (tags []models.Tag, err error) {
-	// 根据update_time排序 倒序
-	err = database.DB.Debug().Order("update_time desc").Find(&tags).Error
-	if err != nil {
-		return
-	}
+// 根据名字查询标签
+func QueryAllTagList(tagName string) (tag models.Tag, err error) {
+	//db := database.DB.Debug().Where("tag_name = ?",tagName).Last(&tag)
+	database.DB.Debug().Where("tag_name = ?",tagName).Last(&tag)
+	//t := db.Value.(*models.Tag)
+	//fmt.Println("t:", t)
+	//if db.Error != nil {
+	//	fmt.Printf("error:%+v\n", err)
+	//	return tag, err
+	//}
+	//fmt.Println("tag:", tag)
+	//tag = *t
+	//return tag, nil
 	return
 }
 

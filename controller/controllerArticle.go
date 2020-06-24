@@ -3,9 +3,8 @@ package controller
 import (
 	"blog/dao/articleTag"
 	"blog/dao/articles"
-	"blog/models"
 	"blog/dao/tags"
-	"fmt"
+	"blog/models"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"strconv"
@@ -16,31 +15,34 @@ import (
 type ArticleController struct {
 }
 
-// 创建文章
+// 发布文章  保存草稿
 func (a *ArticleController) CreateArticle(c *gin.Context) {
 	title := c.PostForm("title")
 	categoryid := c.PostForm("category")
 	ossURL := c.PostForm("ossUrl")
-	//status := c.PostForm("status")
+	status := c.PostForm("status")
 	html := c.PostForm("html")
 	md := c.PostForm("md")
 	tag := c.PostForm("tags")
 	tagsSplit := strings.Split(tag, ";")
-	fmt.Println(tagsSplit)
+	//fmt.Println(tagsSplit)
 
-	fmt.Printf("categoryid:%+v\n", categoryid)
+	//fmt.Printf("categoryid:%+v\n", categoryid)
 	category, err := strconv.Atoi(categoryid)
-	//if status == "true" {
-	//	statu := true
-	//} else {
-	//	statu := false
-	//}
+
+	// 判断文章状态 发布：1   存为草稿：0
+	var statu bool
+	if status == "true" {
+		statu = true
+	} else {
+		statu = false
+	}
 
 	article := &models.Article{
 		Title:        title,
 		CreateTime:   time.Now().UnixNano() / 1e6,
 		UpdateTime:   time.Now().UnixNano() / 1e6,
-		Status:       true,
+		Status:       statu,
 		Md:           md,
 		Html:         html,
 		CoverAddress: ossURL,
@@ -60,7 +62,7 @@ func (a *ArticleController) CreateArticle(c *gin.Context) {
 		return
 	}
 
-	for _,tag := range tagsSplit {
+	for _, tag := range tagsSplit {
 
 		// 调用添加标签函数
 		tag := &models.Tag{
@@ -68,9 +70,25 @@ func (a *ArticleController) CreateArticle(c *gin.Context) {
 			CreateTime: time.Now().UnixNano() / 1e6,
 			UpdateTime: time.Now().UnixNano() / 1e6,
 		}
-		err = tags.CreateTag(tag)
+
+		// 先查询tag是否存在
+		tagss, err := tags.QueryAllTagList(tag.TagName)
 		if err != nil {
+			//fmt.Println("error:", err)
 			return
+		}
+		//fmt.Printf("tagss:%+v", tagss)
+
+		// 数据库中已经存在该标签 就用原标签
+		if tagss.Id > 0 {
+			tag.Id = tagss.Id
+		} else {
+			// 数据库中没有该标签
+			// 不存在就添加
+			err = tags.CreateTag(tag)
+			if err != nil {
+				return
+			}
 		}
 
 		// 调用给第三张表 文章标签表添加记录的函数
@@ -84,8 +102,8 @@ func (a *ArticleController) CreateArticle(c *gin.Context) {
 		if err != nil {
 			return
 		}
-	}
 
+	}
 
 	c.JSON(http.StatusOK, gin.H{
 		"code":    1000,
@@ -112,4 +130,28 @@ func (a *ArticleController) GetArticle(c *gin.Context) {
 		"articleList": articleList,
 	})
 	return
+}
+
+// 删除文章
+func (a *ArticleController) DeleteArticle(c *gin.Context) {
+	articleId := c.Query("articleId")
+	id, err := strconv.Atoi(articleId)
+	if err != nil {
+		return
+	}
+
+	e := articles.DeleteArticle(id)
+	if e != nil {
+		c.JSON(http.StatusOK, gin.H{
+			"code":    1001,
+			"message": "failed",
+		})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"code":    1000,
+		"message": "success",
+	})
+	return
+
 }
